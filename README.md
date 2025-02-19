@@ -8,8 +8,8 @@ This analysis focuses on evaluating the computational complexity and training ti
 ## Methodology
 ### Assumptions
 The analysis is based on the following key assumptions:
--Quantization: Weights, biases, and activations are quantized to INT8. The softmax layer, which is present only in CNN models, is quantized to FLOAT32. While the multiply-accumulate operations (MACCs) in the softmax layer should technically be performed in FLOAT32, their overall computational impact within the considered neural networks is minimal. To simplify the calculations, the softmax layer computations are assumed to be INT8.
--Batch Normalization: The batch normalization layers included in the original models were excluded from the analysis.
+- Quantization: Weights, biases, and activations are quantized to INT8. The softmax layer, which is present only in CNN models, is quantized to FLOAT32. While the multiply-accumulate operations (MACCs) in the softmax layer should technically be performed in FLOAT32, their overall computational impact within the considered neural networks is minimal. To simplify the calculations, the softmax layer computations are assumed to be INT8.
+- Batch Normalization: The batch normalization layers included in the original models were excluded from the analysis.
 
 ### MACCs procedure
 As a first step, a closed-form equation was derived to compute the number of multiply-accumulate operations (MACCs) required by a generic layer (e.g., fully connected, convolutional, depthwise convolutional) to perform specific operations. The operations considered include the forward pass, backward pass, weight update, and additional computations unique to forward learning procedures. These include normalization and goodness evaluation in Forward-Forward (FF), error projection in PEPITA (PEP), and target propagation in Forward Target Propagation (FTP).
